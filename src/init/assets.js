@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const basePath = path.join(__dirname, '../../assets');
 
-const readFileAsync = ()=> {
+const readFileAsync = () => {
     return new Promise((resolve, reject) => {
         fs.readFile(path.join(basePath, filename), 'utf8', (err, data) => {
             if (err) {
@@ -22,19 +22,19 @@ let gameAssets = {};
 
 export const loadGameAssets = async () => {
     try {
-      const [stages, items, itemUnlock] = await Promise.all([
-        readFileAsync('stage.json'),
-        readFileAsync('item.json'),
-        readFileAsync('item_unlock.json'),
-      ]);
-  
-      gameAssets = { stages, items, itemUnlock };
-      return gameAssets;
+        const [stages, items, itemUnlock] = await Promise.all([
+            readFileAsync('stage.json'),
+            readFileAsync('item.json'),
+            readFileAsync('item_unlock.json'),
+        ]);
+
+        gameAssets = { stages, items, itemUnlock };
+        return gameAssets;
     } catch (err) {
-      throw new Error('assets error' + err.message);
+        throw new Error('assets error' + err.message);
     }
-  };
-  
-  export const getGameAssets = () => {
+};
+
+export const getGameAssets = () => {
     return gameAssets;
-  };
+};
